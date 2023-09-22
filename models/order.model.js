@@ -1,9 +1,8 @@
 const mongoose = require("mongoose")
 
 const orderSchema = mongoose.Schema({
-  user: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'user', // Reference to the User model
+  email: {
+    type: String,
     required: true,
   },
   products: [
