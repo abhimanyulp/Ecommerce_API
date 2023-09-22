@@ -3,7 +3,7 @@ const jwt = require("jsonwebtoken")
 const { userModel } = require("../models/user.model")
 const { blacklistModel } = require("../models/blacklist.model")
 
-const login = async (req, res) => {
+exports.login = async (req, res) => {
     const { email, password } = req.body
     try {
         const user = await userModel.findOne({ email })
@@ -24,7 +24,7 @@ const login = async (req, res) => {
     }
 }
 
-const register = async (req, res) => {
+exports.register = async (req, res) => {
     const { name, email, password, role } = req.body
     try {
         const user = await userModel.findOne({ email })
@@ -43,7 +43,7 @@ const register = async (req, res) => {
     }
 }
 
-const logout = async (req, res) => {
+exports.logout = async (req, res) => {
     const { token } = req.params;
     console.log(token)
     try {
@@ -54,5 +54,3 @@ const logout = async (req, res) => {
         res.status(400).send({ "msg": error.message });
     }
 }
-
-module.exports = { login, register, logout }

@@ -1,7 +1,10 @@
 const express = require("express")
 const productRouter = express.Router()
-const { somefunction } = require("../controllers/product.controller")
+const productController = require("../controllers/product.controller")
 
-productRouter.post("/", somefunction)
+productRouter.post("/add", productController.addProduct)
+productRouter.get("/getall", productController.getAllProducts)
+productRouter.get("/getbycategory/:category", productController.getProductsByCategory)
+productRouter.get("/getbyid/:productId", productController.getProductById)
 
 module.exports = { productRouter }

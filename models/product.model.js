@@ -9,18 +9,20 @@ const productSchema = mongoose.Schema({
         type: Number,
         required: true
     },
-    descriprion: {
+    description: {
         type: String,
         required: true
     },
     availability: {
-        bool: Boolean,
+        type: Boolean,
         required: true
     },
     category: {
         type: String,
         required: true,
     }
+}, {
+    versionKey: false
 })
 
 const productModel = mongoose.model("product", productSchema)

@@ -32,6 +32,8 @@ const userSchema = mongoose.Schema({
         default: "user"
 
     }
+}, {
+    versionKey: false
 })
 
 const userModel = mongoose.model("user", userSchema)
