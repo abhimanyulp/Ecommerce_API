@@ -22,6 +22,7 @@ const Authentication = (roles) => {
                 }
 
                 req.body.userId = decoded.userId
+                req.body.email = decoded.email
                 next();
 
             } else {

@@ -5,7 +5,7 @@ const mongoose = require("mongoose")
 // Route for adding a product to the user's cart
 exports.additem = async (req, res) => {
     try {
-        const {userId, productId, quantity} = req.body;
+        const { userId, productId, quantity } = req.body;
 
         // Check if the product is already in the user's cart
         const isProductInCart = await userModel.aggregate([
@@ -109,22 +109,22 @@ exports.deleteitem = async (req, res) => {
 // Update the quantity of a product in the user's cart
 exports.updateCartItemQuantity = async (req, res) => {
     try {
-      const { userId, productId, quantity } = req.body;
-  
-      // Find the user by ID
-      const user = await userModel.findOneAndUpdate(
-        { _id: userId, 'cart.product': productId }, // Find the user and the specific cart item by product ID
-        { $set: { 'cart.$.quantity': quantity } }, // Update the quantity of the specific cart item
-        { new: true }
-      );
-  
-      if (!user) {
-        return res.status(404).json({ error: 'User not found or product not in cart' });
-      }
-  
-      res.status(200).json({ message: 'Cart item quantity updated successfully' });
+        const { userId, productId, quantity } = req.body;
+
+        // Find the user by ID
+        const user = await userModel.findOneAndUpdate(
+            { _id: userId, 'cart.product': productId }, // Find the user and the specific cart item by product ID
+            { $set: { 'cart.$.quantity': quantity } }, // Update the quantity of the specific cart item
+            { new: true }
+        );
+
+        if (!user) {
+            return res.status(404).json({ error: 'User not found or product not in cart' });
+        }
+
+        res.status(200).json({ message: 'Cart item quantity updated successfully' });
     } catch (error) {
-      console.error(error);
-      res.status(500).json({ error: 'Internal server error' });
+        console.error(error);
+        res.status(500).json({ error: 'Internal server error' });
     }
-  };
+};

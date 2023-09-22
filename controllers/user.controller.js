@@ -10,7 +10,7 @@ exports.login = async (req, res) => {
         if (user) {
             bcrypt.compare(password, user.password, (err, result) => {
                 if (result) {
-                    const token = jwt.sign({ userId: user._id, role: user.role }, process.env.privateKey, { expiresIn: '3h' });
+                    const token = jwt.sign({ userId: user._id, role: user.role, email: user.email }, process.env.privateKey, { expiresIn: '3h' });
                     res.status(200).send({ "msg": "Signin Success!", token, userID: user._id })
                 } else {
                     res.status(400).send({ "msg": "Incorrect Password" })

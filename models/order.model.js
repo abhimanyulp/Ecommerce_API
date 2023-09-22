@@ -7,7 +7,7 @@ const orderSchema = mongoose.Schema({
   },
   products: [
     {
-      productId: {
+      product: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'product', // Reference to the Product model
         required: true,
@@ -31,6 +31,6 @@ const orderSchema = mongoose.Schema({
   versionKey: false
 })
 
-const userModel = mongoose.model("order", orderSchema)
+const orderModel = mongoose.model("order", orderSchema)
 
-module.exports = { userModel }
+module.exports = { orderModel }
